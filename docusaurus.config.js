@@ -11,7 +11,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   // title on homepage
-  title: 'Fa\'iz Maulana Habibi',
+  title: 'Izfaha Docs',
+  titleDelimiter: ' | ',
   tagline: 'Bridging infrastructure, security, and the low-level stack. Passionate about Linux internals, breaking things to understand how they work, and automating the rest. Always tinkering beneath the abstraction layer.',
   favicon: 'img/favicon.png',
 
@@ -87,6 +88,13 @@ const config = {
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'ignore',
         },
+
+        // google tag analytics
+        gtag: {
+          trackingID: 'G-1H2FYLBLPE',
+          anonymizeIP: true,
+        },
+
         theme: {
           customCss: './src/css/custom.css',
         },

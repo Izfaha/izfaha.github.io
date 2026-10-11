@@ -18,3 +18,16 @@ keywords:
 slug: /devops/pekan-4-devops
 ---
 
+## Menyiapkan Dockerfile 
+
+Menyiapkan Dockerfile untuk setiap image.
+
+| Name | Image |
+| ----- | ----- |
+| Dockerfile.alpine ||
+| Dockerfile.slim ||
+| Dockerfile.distroless ||
+
+```docker title="Dockerfile.alpine" showLineNumber
+FROM 
+```
