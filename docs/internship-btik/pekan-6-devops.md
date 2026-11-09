@@ -14,6 +14,8 @@ keywords:
   - restore database
 ---
 
+# Aplikasi, Database, dan Backup Terjadwal
+
 ## Overview 
 
 Untuk project ini saya akan menjalankan di vm laptop `worker2` di direkrori `$HOME/week-6-devops`. Pada kasus ini saya akan belajar tentang cara scheduling backup pada suatu database application. Untuk backup server di vm laptop `infra`.
@@ -29,7 +31,7 @@ Untuk project ini saya akan menjalankan di vm laptop `worker2` di direkrori `$HO
 
 Saya akan membuat codingan php sederhana di `index.php` dan juga membuat `Dockerfile` nya juga. Ini juga terkoneksi dengan database mariadb yg nantinya akan digunakan untuk bahan backup ke server `infra`.
 
-```php title=app/index.php
+```php title="app/index.php"
 <?php
 declare(strict_types=1);
 
@@ -121,7 +123,7 @@ function aman(string $nilai): string
 
 Di dalam `Dockerfile` ini hanya meng copy index.php ke dalam folder container `/var/www/html/index.php`.
 
-```yml title=Dockerfile
+```yml title="Dockerfile"
 FROM php:8.3-apache
 
 RUN docker-php-ext-install pdo_mysql
@@ -136,7 +138,7 @@ COPY index.php /var/www/html/index.php
 
 Setelah itu saya akan mempersiapkan 3 services di `compose.yml`, apa aja yg perlu di siapkan ? yaitu service untuk app, database dan adminer untuk UI friendly.
 
-```yml title=compose.yml
+```yml title="compose.yml"
 services:
   mariadb:
     image: mariadb:11.4.13
@@ -232,7 +234,7 @@ Alhamdulillah berhasil.
 
 Saya membuat script di dalam folder script dengan nama `backup.sh`.
 
-```bash title=backup.sh
+```bash title="script/backup.sh"
 #!/usr/bin/env bash
 set -Eeuo pipefail
 umask 077

@@ -19,6 +19,8 @@ keywords:
 slug: /devops/database-dalam-container
 ---
 
+# Restore Data to MariaDB and PostgreSQL
+
 Untuk Lab pekan 6 saya menggunakan vm `worker2` di laptop saya. saya akan belajar tentang bagaimana cara menjalankan mariadb dan postgres di docker compose dengan presisten volume.
 
 ## Docker Compose 
@@ -33,7 +35,7 @@ mkdir {mariadb-init,postgres-init,backup}
 
 Folder tersebut akan di isi query .sql untuk di inject ke dalam container tiap database nya. Jangan lupa untuk membuat `.env`.
 
-```docker
+```yml
 services:
   mariadb:
     image: mariadb:11.4
@@ -150,7 +152,7 @@ Ini adalah hasil dari backup ke 2 database tadi, selanjutnya saya akan belajar m
 
 Untuk uji coba restore saya akan membuat docker compose baru.
 
-```docker
+```yml
 services:
   mariadb:
     image: mariadb:11.4
