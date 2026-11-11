@@ -1,7 +1,7 @@
 ---
 title: "Week 7: Redis Caching Benchmark and Sentinel Failover"
 description: "Measure PHP application response times with and without Redis caching, then configure Redis replicas and Sentinels with Docker Compose and test automatic failover."
-sidebar_label: "Week 7 - DevOps"
+sidebar_label: "Pekan 7 - DevOps"
 sidebar_position: 14
 tags:
   - devops
@@ -60,7 +60,7 @@ Pertama jika sentinel mendeteksi tidak adanya respons dari master maka sentinel 
 
 ### Pembuatan Compose
 
-Dalam file compose ini terdapat master redis dan 2 slave dan juga 3 sentinel.
+Dalam file compose ini terdapat master redis dan 2 slave dan juga 3 sentinel. Untuk container master redis saya buat jadi static ip supaya sentinel dapat mendeteksi by ip bukan by container service.
 
 ```yaml
 x-sentinel: &sentinel
@@ -73,9 +73,8 @@ x-sentinel: &sentinel
     - |
       cat > /tmp/sentinel.conf <<'EOF'
       port 26379
-      sentinel resolve-hostnames yes
-      sentinel announce-hostnames yes
-      sentinel monitor mymaster redis-master 6379 2
+      protected-mode no
+      sentinel monitor mymaster 172.30.77.10 6379 2
       sentinel down-after-milliseconds mymaster 5000
       sentinel failover-timeout mymaster 30000
       sentinel parallel-syncs mymaster 1
@@ -88,7 +87,8 @@ services:
     image: redis:7-alpine
     command: ["redis-server", "--protected-mode", "no", "--appendonly", "yes"]
     networks:
-      - redis-ha
+      redis-ha:
+        ipv4_address: 172.30.77.10
 
   redis-replica-1:
     image: redis:7-alpine
@@ -134,6 +134,9 @@ services:
 networks:
   redis-ha:
     internal: true
+    ipam:
+      config:
+        - subnet: 172.30.77.0/24
 ```
 
 #### Cek Redis dan Sentinel Container 
