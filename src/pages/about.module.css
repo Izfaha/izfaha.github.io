@@ -1,0 +1,35 @@
+.page {
+  min-height: 70vh;
+  padding: 5rem 0;
+}
+
+.intro {
+  max-width: 760px;
+  margin-bottom: 4rem;
+}
+
+.intro h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.intro > p:last-child {
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+.eyebrow {
+  color: var(--ifm-color-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.section {
+  max-width: 760px;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.section li {
+  margin-bottom: 0.75rem;
+}

@@ -102,34 +102,63 @@ const config = {
     ],
   ],
 
+  themes: [
+  [
+    '@easyops-cn/docusaurus-search-local',
+    {
+      hashed: true,
+      indexDocs: true,
+      indexBlog: true,
+    },
+  ],
+],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Izfaha',
-        logo: {
-          alt: 'Documentation by Izfaha',
-          src: 'img/logo.svg',
-        },
-        items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/Izfaha/docusaurus',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
-      },
+  title: 'Izfaha',
+  logo: {
+    alt: 'Documentation by Izfaha',
+    src: 'img/logo.svg',
+  },
+  items: [
+    {
+      type: 'docSidebar',
+      sidebarId: 'tutorialSidebar',
+      position: 'left',
+      label: 'Tutorial',
+    },
+    {
+      to: '/blog',
+      label: 'Blog',
+      position: 'left',
+    },
+    {
+      to: '/projects',
+      label: 'Projects',
+      position: 'left',
+    },
+    {
+      to: '/about',
+      label: 'About Me',
+      position: 'left',
+    },
+    {
+      type: 'search',
+      position: 'right',
+    },
+    {
+      href: 'https://github.com/Izfaha/docusaurus',
+      label: 'GitHub',
+      position: 'right',
+    },
+  ],
+},
       footer: {
-        style: 'dark',
+        // style: 'dark',
         links: [
           {
             title: 'Docs',

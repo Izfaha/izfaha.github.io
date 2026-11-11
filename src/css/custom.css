@@ -1,30 +1,292 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+/* ========================================
+   IZFAHA DOCS — THEME COLORS
+   ======================================== */
 
-/* You can override the default Infima variables here. */
+/* Light mode */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #315a91;
+  --ifm-color-primary-dark: #2c5183;
+  --ifm-color-primary-darker: #294c7a;
+  --ifm-color-primary-darkest: #223f65;
+  --ifm-color-primary-light: #41699e;
+  --ifm-color-primary-lighter: #4c72a4;
+  --ifm-color-primary-lightest: #6e8db7;
+
+  --ifm-background-color: #dcd7ce;
+  --ifm-background-surface-color: #e4dfd6;
+  --ifm-font-color-base: #282d35;
+  --ifm-heading-color: #222a37;
+
+  --ifm-navbar-background-color: #d8d2c8;
+  --ifm-navbar-link-color: #282d35;
+
+  --ifm-footer-background-color: #d8d2c8;
+  --ifm-footer-color: #30343b;
+  --ifm-footer-link-color: #294c7a;
+
+  --ifm-color-emphasis-100: #d8d2c8;
+  --ifm-color-emphasis-200: #cbc4b9;
+  --ifm-color-emphasis-300: #bcb3a6;
+
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-global-radius: 10px;
+  --docusaurus-highlighted-code-line-bg: rgba(94, 77, 52, 0.12);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #8bb4ff;
+  --ifm-color-primary-dark: #6ca0ff;
+  --ifm-color-primary-darker: #5b94ff;
+  --ifm-color-primary-darkest: #3076f5;
+  --ifm-color-primary-light: #aac8ff;
+  --ifm-color-primary-lighter: #bad3ff;
+  --ifm-color-primary-lightest: #dae7ff;
+
+  --ifm-background-color: #0b1220;
+  --ifm-background-surface-color: #131e31;
+  --ifm-font-color-base: #dce5f4;
+  --ifm-heading-color: #f3f7ff;
+
+  --ifm-navbar-background-color: #101a2b;
+  --ifm-navbar-link-color: #e1e9f7;
+
+  --ifm-footer-background-color: #0e1829;
+  --ifm-footer-color: #b7c6dc;
+  --ifm-footer-link-color: #a9c7ff;
+
+  --docusaurus-highlighted-code-line-bg: rgba(139, 180, 255, 0.13);
+}
+
+/* ========================================
+   NAVBAR
+   ======================================== */
+
+.navbar {
+  border-bottom: 1px solid rgba(69, 59, 47, 0.14);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .navbar {
+  border-bottom-color: rgba(166, 194, 239, 0.12);
+}
+
+.navbar__title {
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.navbar__link {
+  font-weight: 500;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--ifm-color-primary);
+}
+
+/* ========================================
+   HOMEPAGE HERO
+   ======================================== */
+
+.hero--primary .hero__title {
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.hero--primary .hero__subtitle {
+  max-width: 850px;
+  margin: 1rem auto 0;
+  line-height: 1.65;
+}
+
+/* Taupe/greige pada light mode */
+html[data-theme='light'] .hero--primary {
+  background: #a9a092;
+  color: #202b37;
+}
+
+html[data-theme='light'] .hero--primary .hero__title {
+  color: #202b37;
+}
+
+html[data-theme='light'] .hero--primary .hero__subtitle {
+  color: #29333e;
+}
+
+/* Biru navy pada dark mode */
+html[data-theme='dark'] .hero--primary {
+  background: linear-gradient(125deg, #10254c 0%, #234372 100%);
+  color: #ffffff;
+}
+
+html[data-theme='dark'] .hero--primary .hero__title {
+  color: #ffffff;
+}
+
+html[data-theme='dark'] .hero--primary .hero__subtitle {
+  color: #dae5f7;
+}
+
+/* ========================================
+   LIGHT MODE — CONTENT
+   ======================================== */
+
+html[data-theme='light'] body,
+html[data-theme='light'] .main-wrapper {
+  background-color: var(--ifm-background-color);
+}
+
+html[data-theme='light'] .theme-doc-sidebar-container,
+html[data-theme='light'] .menu {
+  background-color: var(--ifm-background-color);
+}
+
+html[data-theme='light']
+  .menu__link--active:not(.menu__link--sublist) {
+  background-color: #c9c1b5;
+  color: #294c7a;
+}
+
+html[data-theme='light'] table th,
+html[data-theme='light'] table tr:nth-child(2n) {
+  background-color: #d4cec4;
+}
+
+html[data-theme='light'] .theme-code-block,
+html[data-theme='light'] pre {
+  background-color: #cec8bf;
+}
+
+/* =========================================
+   LOCAL SEARCH — LIGHT & DARK MODE
+   ========================================= */
+
+/* Kotak input dan ikon pencarian */
+html[data-theme='light'] .navbar [class*='searchBar'] input {
+  background: #c8c0b4;
+  color: #222b36;
+  border: 1px solid #a69d90;
+}
+
+html[data-theme='dark'] .navbar [class*='searchBar'] input {
+  background: #243650;
+  color: #f3f6fc;
+  border: 1px solid #7890b2;
+}
+
+html[data-theme='light'] .navbar [class*='searchBar'] input::placeholder {
+  color: #29313c;
+  opacity: 1;
+}
+
+html[data-theme='dark'] .navbar [class*='searchBar'] input::placeholder {
+  color: #e1e9f6;
+  opacity: 1;
+}
+
+/* Shortcut Ctrl K */
+html[data-theme='light'] .navbar [class*='searchBar'] kbd {
+  background: #e7e0d5;
+  color: #222b36;
+  border: 1px solid #9e9486;
+  box-shadow: none;
+  opacity: 1;
+}
+
+html[data-theme='dark'] .navbar [class*='searchBar'] kbd {
+  background: #314966;
+  color: #f3f6fc;
+  border: 1px solid #8299b9;
+  box-shadow: none;
+  opacity: 1;
+}
+
+/* Panel dropdown */
+html[data-theme='light'] [class*='dropdownMenu'] {
+  background: #e7e1d8;
+  color: #252e39;
+  border: 1px solid #aaa193;
+}
+
+html[data-theme='dark'] [class*='dropdownMenu'] {
+  background: #152238;
+  color: #eaf0fa;
+  border: 1px solid #405674;
+}
+
+/* Kartu hasil pencarian */
+html[data-theme='light'] [class*='dropdownMenu'] [class*='suggestion'] {
+  background: #eee9e1;
+  color: #252e39;
+}
+
+html[data-theme='dark'] [class*='dropdownMenu'] [role='option'] {
+  background-color: #243650 !important;
+  color: #f3f6fc !important;
+}
+
+html[data-theme='dark'] [class*='dropdownMenu'] [role='option'] * {
+  color: inherit !important;
+}
+
+/* Seluruh teks dan ikon di dalam kartu mengikuti warna kartu */
+html[data-theme='light'] [class*='dropdownMenu'] [class*='suggestion'] *,
+html[data-theme='dark'] [class*='dropdownMenu'] [class*='suggestion'] * {
+  color: inherit;
+}
+
+/* Hasil yang sedang dipilih */
+html[data-theme='light']
+  [class*='dropdownMenu']
+  [class*='suggestion'][class*='cursor'] {
+  background: #b9ad9c;
+  color: #172331;
+}
+
+html[data-theme='dark']
+  [class*='dropdownMenu']
+  [class*='suggestion'][class*='cursor'] {
+  background: #458cdc !important;
+  color: #fff !important;
+}
+
+/* Kata yang cocok dengan pencarian tetap diberi penekanan */
+[class*='dropdownMenu'] [class*='suggestion'] mark,
+[class*='dropdownMenu'] [class*='suggestion'] em {
+  background: transparent;
+  color: inherit;
+  font-weight: 800;
+}
+
+/* ========================================
+   CARDS, BUTTONS, FOOTER
+   ======================================== */
+
+.card {
+  border: 1px solid rgba(51, 91, 155, 0.11);
+  box-shadow: 0 8px 28px rgba(20, 44, 90, 0.06);
+}
+
+[data-theme='dark'] .card {
+  border-color: rgba(163, 192, 236, 0.12);
+  box-shadow: none;
+}
+
+.button--primary {
+  color: #ffffff;
+  border-radius: 9px;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .button--primary {
+  color: #0b1730;
+}
+
+.footer {
+  border-top: 1px solid rgba(69, 59, 47, 0.14);
+}
+
+[data-theme='dark'] .footer {
+  border-top-color: rgba(166, 194, 239, 0.12);
 }

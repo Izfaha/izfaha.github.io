@@ -1,0 +1,62 @@
+.page {
+  min-height: 70vh;
+  padding: 5rem 0;
+}
+
+.header {
+  max-width: 680px;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.eyebrow {
+  color: var(--ifm-color-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  padding: 1.75rem;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px;
+}
+
+.card h2 {
+  margin-top: 1.25rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags span {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  background: #d5cbbc;
+  color: #28313e;
+  border: 1px solid #b9ad9b;
+}
+
+[data-theme='dark'] .tags span {
+  background: #263b5b;
+  color: #e4eeff;
+  border-color: #49658c;
+}
