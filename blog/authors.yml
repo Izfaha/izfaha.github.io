@@ -1,27 +1,9 @@
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-  page:
-    # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
-  socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
-
 faiz_maulana_habibi:
-  name: Fa'iz Maulana Habibi
-  title: College Student of Dian Nuswantoro University
-  url: https://github.com/Izfaha
-  image_url: /img/authors/faiz.jpg 
+  name: "Fa'iz Maulana Habibi"
+  title: "Computer Science Student at Dian Nuswantoro University"
+  url: "https://github.com/Izfaha"
+  image_url: "/img/authors/faiz.jpg"
   page:
-    # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-faiz_maulana_habibi-articles'
+    permalink: "/blog/authors/faiz-maulana-habibi"
   socials:
-    x: Xray
-    linkedin: Fa'iz Maulana Habibi
-    github: Izfaha
-    newsletter: https://www.greatfrontend.com
+    github: "Izfaha"

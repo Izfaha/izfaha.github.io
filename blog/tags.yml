@@ -72,3 +72,23 @@ tailscale:
   label: Tailscale
   permalink: /tailscale
   description: Private networking and secure remote access using Tailscale.
+
+docker:
+  label: Docker
+  permalink: /docker
+  description: Container platform for building and running applications.
+
+homelab:
+  label: Homelab
+  permalink: /homelab
+  description: Personal environment for learning and running self-hosted services.
+
+self-hosting:
+  label: Self-hosting
+  permalink: /self-hosting
+  description: Running and managing applications on infrastructure you control.
+
+devops:
+  label: DevOps
+  permalink: /devops
+  description: Practices and tools for building, deploying, and operating software.
