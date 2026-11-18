@@ -22,7 +22,7 @@ sudo adduser --shell /bin/bash --no-create-home izfaha
 
 This command will create a user named `izfaha` has access to login shell `/bin/bash` with no home directory.
 
-![create a new user](./img/create-user/adduser.png)
+![create a new user](./img/create-user/adduser.webp)
 
 ## Visudo User Permission
 
@@ -88,4 +88,4 @@ Make sure to give read access to user and organization.
 sudo chmod 0440 /etc/sudoers.d/izfaha
 ```
 
-![read](./img/create-user/permission-to-sudoers.d-izfaha.png)
+![read](./img/create-user/permission-to-sudoers.d-izfaha.webp)

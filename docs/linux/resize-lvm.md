@@ -16,7 +16,7 @@ keywords:
 
 In this example, the root filesystem (`/`) is on the logical volume `ubuntu-lv`. The logical volume is about 10 GB, while its physical partition, `/dev/sda3`, is about 18 GB. I want to use the available space to expand `/`.
 
-![Initial disk layout](./img/resize-lvm/lsblk-ubuntu.png)
+![Initial disk layout](./img/resize-lvm/lsblk-ubuntu.webp)
 
 > The size of `/dev/sda3` does not tell us how much space is available to extend the logical volume. We need to check the free space in its volume group first.
 
@@ -48,7 +48,7 @@ sudo pvs -o help
 
 You can add `--units g` to display sizes in GiB.
 
-![Logical volume information](./img/resize-lvm/lvs-o.png)
+![Logical volume information](./img/resize-lvm/lvs-o.webp)
 
 In my setup, the volume group is `ubuntu-vg`, its physical volume is `/dev/sda3`, and the logical volume path is `/dev/ubuntu-vg/ubuntu-lv`.
 
@@ -58,7 +58,7 @@ In my setup, the volume group is `ubuntu-vg`, its physical volume is `/dev/sda3`
 sudo vgs -o vg_name,vg_size,vg_free --units g
 ```
 
-![Volume group free space](./img/resize-lvm/vgs-o.png)
+![Volume group free space](./img/resize-lvm/vgs-o.webp)
 
 Check the **`VG Free`** value. The next command uses all free space *already available in the volume group*. If `VG Free` is `0`, there is no free space for `lvextend` to allocate yet.
 
@@ -82,7 +82,7 @@ Here:
 - `-r` resizes the filesystem along with the logical volume.
 - `/dev/ubuntu-vg/ubuntu-lv` is the logical volume to extend.
 
-![Logical volume extension](./img/resize-lvm/extend-lvs.png)
+![Logical volume extension](./img/resize-lvm/extend-lvs.webp)
 
 ## Verify the result
 

@@ -31,7 +31,7 @@ Saya akan membuat `docker-compose.yml` berisi 2 service yaitu, mariadb dan postg
 mkdir {mariadb-init,postgres-init,backup}
 ```
 
-![create dirs](./img/pekan-6/ls-db-folder.png)
+![create dirs](./img/pekan-6/ls-db-folder.webp)
 
 Folder tersebut akan di isi query .sql untuk di inject ke dalam container tiap database nya. Jangan lupa untuk membuat `.env`.
 
@@ -104,7 +104,7 @@ INSERT INTO catatan (isi)
 VALUES ('Data awal dari init script MariaDB');
 ```
 
-![init mariadb](./img/pekan-6/init-mariadb.png)
+![init mariadb](./img/pekan-6/init-mariadb.webp)
 
 **Postgres Init**
 
@@ -118,15 +118,15 @@ INSERT INTO catatan (isi)
 VALUES ('Data awal dari init script PostgreSQL');
 ```
 
-![init postgres](./img/pekan-6/init-postgres.png)
+![init postgres](./img/pekan-6/init-postgres.webp)
 
 Sekarang ke dua conatainer database sudah hidup.
 
-![docker ps main container](./img/pekan-6/docker-ps-main-db-container.png)
+![docker ps main container](./img/pekan-6/docker-ps-main-db-container.webp)
 
 Sekarang kita cek table database nya :
 
-![test table ke dua db](./img/pekan-6/test-table-db.png)
+![test table ke dua db](./img/pekan-6/test-table-db.webp)
 
 ## Backups 2 database
 
@@ -144,7 +144,7 @@ docker compose exec -T mariadb sh -c 'exec mariadb-dump -u "$MARIADB_USER" -p"$M
 docker compose exec -T postgres sh -c 'exec pg_dump -U "$POSTGRES_USER" -d "$POSTGRES_DB" --no-owner --no-acl' > backups/postgres.sql
 ```
 
-![backups](./img/pekan-6/backups-2-db.png)
+![backups](./img/pekan-6/backups-2-db.webp)
 
 Ini adalah hasil dari backup ke 2 database tadi, selanjutnya saya akan belajar merestore ke container baru.
 
@@ -200,7 +200,7 @@ Sekarang saya akan masukan backupnya dengan command ini :
 docker compose -f docker-compose.restore.yml exec -T mariadb sh -c 'exec mariadb -u $MARIADB_USER -p$MARIADB_PASSWORD $MARIADB_DATABASE' < backups/mariadb.sql
 ```
 
-![mariadb restore command](./img/pekan-6/mariadb-restore-command.png)
+![mariadb restore command](./img/pekan-6/mariadb-restore-command.webp)
 
 Cek backup database :
 
@@ -208,7 +208,7 @@ Cek backup database :
 docker compose -f docker-compose.restore.yml exec -T mariadb sh -c 'mariadb -u $MARIADB_USER -p$MARIADB_PASSWORD $MARIADB_DATABASE -e "SELECT * FROM catatan;"'
 ```
 
-![mariadb restore check command](./img/pekan-6/mariadb-restore-check-database.png)
+![mariadb restore check command](./img/pekan-6/mariadb-restore-check-database.webp)
 
 **PostgreSQL**
 
@@ -220,7 +220,7 @@ docker compose -f docker-compose.restore.yml exec -T postgres sh -c 'exec psql -
 docker compose -f docker-compose.restore.yml exec postgres sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT * FROM catatan;"'
 ```
 
-![postgres restore and check output](./img/pekan-6/postgresql-restoreandcheck.png)
+![postgres restore and check output](./img/pekan-6/postgresql-restoreandcheck.webp)
 
 ## Upgrade versi minor database tanpa kehilangan data. (opsional)
 
@@ -233,7 +233,7 @@ docker exec mariadb mariadb --version
 docker exec postgres postgres --version
 ```
 
-![check version](./img/pekan-6/check-database-version.png)
+![check version](./img/pekan-6/check-database-version.webp)
 
 ```bash
 # check table mariadb
@@ -245,7 +245,7 @@ docker compose exec postgres sh -c \
   'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT COUNT(*) AS jumlah FROM catatan;"'
 ```
 
-![check tables](./img/pekan-6/check-table-in-mariadb-and-postgres.png)
+![check tables](./img/pekan-6/check-table-in-mariadb-and-postgres.webp)
 
 Sekarang saya akan update dulu :
 
@@ -258,7 +258,7 @@ services:
     image: postgres:17.11
 ```
 
-![check updated](./img/pekan-6/check-updated-db-version.png)
+![check updated](./img/pekan-6/check-updated-db-version.webp)
 
 ## Summary
 

@@ -21,7 +21,7 @@ I wonder could I access local ip proxmox from different network? let say my loca
 {/* truncate */}
 
 <img
-  src={require('./img/topology.png').default}
+  src={require('./img/topology.webp').default}
   alt="Alur akses Proxmox melalui SSH tunnel"
   style={{
     width: '300px',
@@ -53,7 +53,7 @@ Proxy jump is access vm inside my pc lab. Instead of I ssh to my pc then ssh aga
 {/* proxy jump topology */}
 
 <img
-  src={require('./img/proxy-jump.png').default}
+  src={require('./img/proxy-jump.webp').default}
   alt="Alur akses Proxmox melalui SSH tunnel"
   style={{
     width: '300px',

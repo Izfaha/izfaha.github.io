@@ -21,7 +21,7 @@ And I encountered this error:
 Cannot connect to the Docker daemon at unix:///home/ray/.docker/desktop/docker.sock. Is the docker daemon running?
 ```
 
-![error](./img/docker-fetch-fail.png)
+![error](./img/docker-fetch-fail.webp)
 
 ## How do I tackle?
 

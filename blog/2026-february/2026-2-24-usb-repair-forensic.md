@@ -49,16 +49,16 @@ Write data to /dev/sdb failed, please check whether it's in use.
 
 - run `lsblk`
 
-![lsblk](./img/lsblk.png)
+![lsblk](./img/lsblk.webp)
 
 - run `dmesg` to check log kernel
 
-![dmesg](./img/hdparm.png)
+![dmesg](./img/hdparm.webp)
 
 - run `hdparm`
 
-![hdparm](./img/hdparm.png)
+![hdparm](./img/hdparm.webp)
 
 - run `dd` to verify
 
-![dd](./img/dd.png)
+![dd](./img/dd.webp)

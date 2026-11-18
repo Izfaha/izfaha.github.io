@@ -27,7 +27,7 @@ Konfigurasi service bersifat deklaratif. Saat membuat service dengan dua replika
 | `worker1` | Worker | `192.168.56.11` |
 | `worker2` | Worker | `192.168.56.12` |
 
-![topology](./img/pekan-9/swarm-topology.png)
+![topology](./img/pekan-9/swarm-topology.webp)
 
 ### Port yang digunakan
 
@@ -50,7 +50,7 @@ docker swarm init \
 
 `--advertise-addr` menetapkan alamat yang diumumkan ke node lain untuk komunikasi Swarm. `--data-path-addr` menetapkan alamat untuk lalu lintas data jaringan overlay. Pada lab ini, kedua parameter menggunakan IP yang sama.
 
-![Output inisialisasi Swarm di manager1](./img/pekan-9/swarm-init-manager1.png)
+![Output inisialisasi Swarm di manager1](./img/pekan-9/swarm-init-manager1.webp)
 
 ### Bergabung sebagai worker
 
@@ -58,9 +58,9 @@ Output `docker swarm init` menampilkan perintah `docker swarm join` beserta toke
 
 Jika dokumentasi ini dipublikasikan, samarkan join token pada tangkapan layar.
 
-![Proses join pada worker1](./img/pekan-9/join-token-worker1.png)
+![Proses join pada worker1](./img/pekan-9/join-token-worker1.webp)
 
-![Proses join pada worker2](./img/pekan-9/join-token-worker2.png)
+![Proses join pada worker2](./img/pekan-9/join-token-worker2.webp)
 
 Setelah kedua worker bergabung, saya mengecek keanggotaan cluster dari `manager1`.
 
@@ -70,7 +70,7 @@ docker node ls
 
 Saya mengecek kolom `STATUS` untuk memastikan ketiga node berstatus `Ready`, serta kolom `AVAILABILITY` untuk memastikan ketiganya `Active`. Pada kolom `MANAGER STATUS`, `manager1` seharusnya tampil sebagai `Leader`.
 
-![Daftar node Swarm dari manager1](./img/pekan-9/node-ls-manager1.png)
+![Daftar node Swarm dari manager1](./img/pekan-9/node-ls-manager1.webp)
 
 ## Membuat service Nginx dalam mode replicated
 
@@ -84,7 +84,7 @@ docker service create \
   nginx:stable-alpine
 ```
 
-![Pembuatan service Nginx dengan dua replika](./img/pekan-9/create-service-nginx-manager1.png)
+![Pembuatan service Nginx dengan dua replika](./img/pekan-9/create-service-nginx-manager1.webp)
 
 Saya menggunakan dua perintah untuk memeriksa service. `docker service ls` menunjukkan ringkasan jumlah replika, sedangkan `docker service ps` menampilkan penempatan dan status tiap task.
 
@@ -95,9 +95,9 @@ docker service ps web-w9
 
 Jika kedua replika sudah berjalan, kolom `REPLICAS` akan menampilkan `2/2`.
 
-![Daftar service Swarm](./img/pekan-9/docker-service-ls-manager1.png)
+![Daftar service Swarm](./img/pekan-9/docker-service-ls-manager1.webp)
 
-![Penempatan task service web-w9](./img/pekan-9/docker-service-ps-web-w9.png)
+![Penempatan task service web-w9](./img/pekan-9/docker-service-ps-web-w9.webp)
 
 ### Menguji ingress routing mesh
 
@@ -111,7 +111,7 @@ curl -I http://192.168.56.12:18080
 
 Service memakai mode publish `ingress` secara default. Melalui **routing mesh**, setiap node dapat menerima koneksi pada port yang dipublikasikan dan meneruskannya ke task Nginx yang aktif. Karena itu, sebuah node tetap bisa merespons `curl` meskipun task Nginx berjalan di node lain. Untuk melihat lokasi task, saya menggunakan `docker service ps web-w9`.
 
-![Pengujian akses Nginx melalui tiga alamat IP node](./img/pekan-9/curl-check-ke-semua-vm.png)
+![Pengujian akses Nginx melalui tiga alamat IP node](./img/pekan-9/curl-check-ke-semua-vm.webp)
 
 ## Melakukan scale up dan scale down
 
@@ -121,16 +121,16 @@ Saya mulai dengan menaikkan jumlah replika `web-w9` dari dua menjadi tiga. Perin
 docker service scale web-w9=3
 ```
 
-![Scale up service web-w9 menjadi tiga replika](./img/pekan-9/command-scale-3r.png)
+![Scale up service web-w9 menjadi tiga replika](./img/pekan-9/command-scale-3r.webp)
 
 ```bash
 docker service ps web-w9
 docker service ls
 ```
 
-![Penempatan task setelah scale up](./img/pekan-9/scale-3r-dockerservice-ps.png)
+![Penempatan task setelah scale up](./img/pekan-9/scale-3r-dockerservice-ps.webp)
 
-![Jumlah replika setelah scale up](./img/pekan-9/scale-3r-docker-service-ls.png)
+![Jumlah replika setelah scale up](./img/pekan-9/scale-3r-docker-service-ls.webp)
 
 Berikutnya saya menurunkan jumlah replika dari tiga menjadi dua. Saat *scale down*, Swarm menghentikan satu task untuk menyesuaikan jumlah replika dengan konfigurasi baru.
 
@@ -140,11 +140,11 @@ docker service ls
 docker service ps web-w9
 ```
 
-![Scale down service web-w9 menjadi dua replika](./img/pekan-9/2r-command.png)
+![Scale down service web-w9 menjadi dua replika](./img/pekan-9/2r-command.webp)
 
-![Jumlah replika setelah scale down](./img/pekan-9/2r-docker-service-ls.png)
+![Jumlah replika setelah scale down](./img/pekan-9/2r-docker-service-ls.webp)
 
-![Status task setelah scale down](./img/pekan-9/2r-docker-service-ps.png)
+![Status task setelah scale down](./img/pekan-9/2r-docker-service-ps.webp)
 
 Sebelum lanjut ke percobaan update, saya menaikkan kembali jumlah replika menjadi tiga.
 
@@ -152,7 +152,7 @@ Sebelum lanjut ke percobaan update, saya menaikkan kembali jumlah replika menjad
 docker service scale web-w9=3
 ```
 
-![Jumlah replika dikembalikan menjadi tiga](./img/pekan-9/3r-balekin.png)
+![Jumlah replika dikembalikan menjadi tiga](./img/pekan-9/3r-balekin.webp)
 
 ## Melakukan rolling update dan rollback
 
@@ -163,9 +163,9 @@ docker service update --image nginx:mainline-alpine web-w9
 docker service ps web-w9
 ```
 
-![Perintah update image service Nginx](./img/pekan-9/update-img-command.png)
+![Perintah update image service Nginx](./img/pekan-9/update-img-command.webp)
 
-![Status task setelah update image](./img/pekan-9/update-img-docker-service-ps.png)
+![Status task setelah update image](./img/pekan-9/update-img-docker-service-ps.webp)
 
 Output `docker service ps` dapat menampilkan task lama dengan status `Shutdown` karena perintah ini juga menampilkan riwayat task. Untuk memeriksa image yang dikonfigurasi pada service, saya menggunakan `inspect`.
 
@@ -173,7 +173,7 @@ Output `docker service ps` dapat menampilkan task lama dengan status `Shutdown` 
 docker service inspect --pretty web-w9
 ```
 
-![Konfigurasi service setelah update image](./img/pekan-9/inspect-service.png)
+![Konfigurasi service setelah update image](./img/pekan-9/inspect-service.webp)
 
 ### Mengembalikan konfigurasi service
 
@@ -185,11 +185,11 @@ docker service ps web-w9
 docker service inspect --pretty web-w9
 ```
 
-![Proses rollback service web-w9](./img/pekan-9/rollback-image.png)
+![Proses rollback service web-w9](./img/pekan-9/rollback-image.webp)
 
-![Status task setelah rollback](./img/pekan-9/roleback-service-ps.png)
+![Status task setelah rollback](./img/pekan-9/roleback-service-ps.webp)
 
-![Konfigurasi service setelah rollback](./img/pekan-9/rollback-inspect.png)
+![Konfigurasi service setelah rollback](./img/pekan-9/rollback-inspect.webp)
 
 ## Membandingkan mode replicated dan global
 
@@ -212,11 +212,11 @@ docker service inspect --pretty web-global-w9
 
 Ketika ketiga node berstatus `Active` dan memenuhi syarat penempatan, `web-global-w9` menjalankan satu task di masing-masing VM. Saya membuat service ini tanpa port yang dipublikasikan karena pengujiannya berfokus pada penempatan task.
 
-![Pembuatan service Nginx dalam mode global](./img/pekan-9/service-global-mode.png)
+![Pembuatan service Nginx dalam mode global](./img/pekan-9/service-global-mode.webp)
 
-![Penempatan task service global pada node](./img/pekan-9/service-mode-global-docker-service-ps.png)
+![Penempatan task service global pada node](./img/pekan-9/service-mode-global-docker-service-ps.webp)
 
-![Konfigurasi service dalam mode global](./img/pekan-9/service-global-inspect.png)
+![Konfigurasi service dalam mode global](./img/pekan-9/service-global-inspect.webp)
 
 ## Melakukan drain pada `worker1` untuk simulasi maintenance
 
@@ -228,7 +228,7 @@ docker service ps web-w9
 docker service ps web-global-w9
 ```
 
-![Penempatan task sebelum worker1 di-drain](./img/pekan-9/before-drain-worker1.png)
+![Penempatan task sebelum worker1 di-drain](./img/pekan-9/before-drain-worker1.webp)
 
 Dari `manager1`, saya mengubah availability `worker1` menjadi `Drain`.
 
@@ -247,7 +247,7 @@ docker service ps web-w9
 docker service ps web-global-w9
 ```
 
-![Status node dan penempatan task setelah worker1 di-drain](./img/pekan-9/after-drain-worker1.png)
+![Status node dan penempatan task setelah worker1 di-drain](./img/pekan-9/after-drain-worker1.webp)
 
 ### Mengaktifkan kembali `worker1`
 

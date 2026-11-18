@@ -64,7 +64,7 @@ server {
 }
 ```
 
-![site-b](./img/pekan-5/browser-site-a.png)
+![site-b](./img/pekan-5/browser-site-a.webp)
 
 ## Apache
 
@@ -96,7 +96,7 @@ ServerName localhost
 </VirtualHost>
 ```
 
-![site-a](./img/pekan-5/browser-site-b.png)
+![site-a](./img/pekan-5/browser-site-b.webp)
 
 Sites Nginx : `$HOME/week-5/nginx/sites/site-a/index.html`
 PHP info : `$HOME/week-5/nginx/sites/site-a/info.php `

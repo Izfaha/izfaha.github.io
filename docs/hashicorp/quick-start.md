@@ -10,7 +10,7 @@ First thing first, We should download HashiCorp's public signing key and print t
 wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 ```
 
-![wget hashicorp keyring](./img/quic-start/wget-hashicorp-keyring.png)
+![wget hashicorp keyring](./img/quic-start/wget-hashicorp-keyring.webp)
 
 Then, add hashicorp repository into source list.
 
@@ -18,7 +18,7 @@ Then, add hashicorp repository into source list.
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 ```
 
-![add hashicorp repository](./img/quic-start/add-hashicorp-repo.png)
+![add hashicorp repository](./img/quic-start/add-hashicorp-repo.webp)
 
 Now let's update package info and install vault.
 
@@ -32,7 +32,7 @@ sudo apt update && sudo apt install vault
 vault --version
 ```
 
-![vault version](./img/quic-start/vault-version.png)
+![vault version](./img/quic-start/vault-version.webp)
 
 **Start Vault Dev Server**
 
@@ -40,9 +40,9 @@ vault --version
 vault server -dev -dev-root-token-id="root"
 ```
 
-![vault token root](./img/quic-start/vault-token-root-1.png)
+![vault token root](./img/quic-start/vault-token-root-1.webp)
 
-![vault token root](./img/quic-start/vault-token-root-2.png)
+![vault token root](./img/quic-start/vault-token-root-2.webp)
 
 Do not open in browser, you need to export these two environment variable
 
@@ -57,15 +57,15 @@ Then hit this command :
 vault status
 ```
 
-![vault status](./img/quic-start/vault-variable-set-and-status.png)
+![vault status](./img/quic-start/vault-variable-set-and-status.webp)
 
 Login Vault UI and paste root token from terminal.
 
-![vault login page](./img/quic-start/vault-ui-login.png)
+![vault login page](./img/quic-start/vault-ui-login.webp)
 
 This is Vault dashboard
 
-![login vault dashboard](./img/quic-start/vault-ui.png)
+![login vault dashboard](./img/quic-start/vault-ui.webp)
 
 ## Configure Vault Database Secrets Engine
 
@@ -75,9 +75,9 @@ This is Vault dashboard
 vault secrets enable database
 ```
 
-![cli db secret engine](./img/quic-start/cli-db.png)
+![cli db secret engine](./img/quic-start/cli-db.webp)
 
-![ui db secret engine](./img/quic-start/ui-db.png)
+![ui db secret engine](./img/quic-start/ui-db.webp)
 
 **Configure the Database Connection**
 
@@ -90,9 +90,9 @@ vault write database/config/mariadb \
   password="root"
 ```
 
-![connecting mariadb to vault](./img/quic-start/mariadb-connect-to-vault.png)
+![connecting mariadb to vault](./img/quic-start/mariadb-connect-to-vault.webp)
 
-![ui connection](./img/quic-start/mariadb-ui-cred.png)
+![ui connection](./img/quic-start/mariadb-ui-cred.webp)
 
 **Create an Admin Role**
 
@@ -106,9 +106,9 @@ vault write database/roles/db-admin \
   max_ttl="1h"
 ```
 
-![create admin role](./img/quic-start/create-admin-role.png)
+![create admin role](./img/quic-start/create-admin-role.webp)
 
-![ui admin role](./img/quic-start/role-admin-ui.png)
+![ui admin role](./img/quic-start/role-admin-ui.webp)
 
 **Create a Read-Only Role**
 
@@ -122,9 +122,9 @@ vault write database/roles/db-read-only \
   max_ttl="1h"
 ```
 
-![read-only role cli](./img/quic-start/readonly-role-cli.png)
+![read-only role cli](./img/quic-start/readonly-role-cli.webp)
 
-![read only ui role](./img/quic-start/readonly-role-ui.png)
+![read only ui role](./img/quic-start/readonly-role-ui.webp)
 
 **Generate Dynamic Credentials**
 
@@ -134,7 +134,7 @@ Admin credentials:
 vault read database/creds/db-admin
 ```
 
-![admin credential](./img/quic-start/admin-cred.png)
+![admin credential](./img/quic-start/admin-cred.webp)
 
 Read-only credentials:
 
@@ -142,7 +142,7 @@ Read-only credentials:
 vault read database/creds/db-read-only
 ```
 
-![read only credential](./img/quic-start/readonly-cred.png)
+![read only credential](./img/quic-start/readonly-cred.webp)
 
 **Verify the Credentials**
 
@@ -153,7 +153,7 @@ mariadb -h 192.168.18.110 \
   -e "SHOW DATABASES;"
 ```
 
-![mariadb credentials](./img/quic-start/mariadb-cred.png)
+![mariadb credentials](./img/quic-start/mariadb-cred.webp)
 
 **Lease Management & Manual Revocation**
 

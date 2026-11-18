@@ -11,7 +11,7 @@ First thing first, I encounter this issue when updating my arch linux pc and I d
 
 `{/* truncate */}`
 
-![error](./img/untrusted-gpg-signature.png)
+![error](./img/untrusted-gpg-signature.webp)
 
 Solve
 

@@ -28,7 +28,7 @@ docker service create \
   nginx:stable-alpine
 ```
 
-![Pembuatan service web-update-w9](./img/pekan-9/devops-service.png)
+![Pembuatan service web-update-w9](./img/pekan-9/devops-service.webp)
 
 Setelah service dibuat, saya memeriksa status task dan mengirim request HTTP untuk memastikan Nginx dapat diakses:
 
@@ -39,7 +39,7 @@ curl -I http://127.0.0.1:18090
 
 Perintah `docker service ps` menunjukkan task yang dijalankan beserta node tempatnya berjalan. Sementara itu, `curl -I` meminta header respons HTTP dari service.
 
-![Pemeriksaan service](./img/pekan-9/devops-service-run.png)
+![Pemeriksaan service](./img/pekan-9/devops-service-run.webp)
 
 ## Memantau request dengan `curl`
 
@@ -59,7 +59,7 @@ done | tee ~/week-9-rolling-update.log
 
 Loop tersebut mengirim request setiap 0,5 detik. Output `OK` berarti request berhasil, sedangkan `FAIL` berarti request gagal, mengalami *timeout*, atau menerima status HTTP error. Hasil pemantauan juga disimpan dalam file `~/week-9-rolling-update.log`.
 
-![Pemantauan request menggunakan curl](./img/pekan-9/devops-cek-request-using-bash.png)
+![Pemantauan request menggunakan curl](./img/pekan-9/devops-cek-request-using-bash.webp)
 
 ## Melakukan rolling update
 
@@ -77,7 +77,7 @@ docker service update \
 
 Konfigurasi tersebut membuat Swarm memperbarui **satu task setiap tahap**, dengan jeda **10 detik** sebelum melanjutkan ke tahap berikutnya. Opsi `start-first` memulai task pengganti sebelum menghentikan task lama. Jika update task gagal, `--update-failure-action rollback` menginstruksikan Swarm untuk mengembalikan service ke konfigurasi sebelumnya.
 
-![Proses rolling update service](./img/pekan-9/devops-update-service-image.png)
+![Proses rolling update service](./img/pekan-9/devops-update-service-image.webp)
 
 Setelah update selesai, saya memeriksa status task:
 
@@ -91,6 +91,6 @@ Kemudian saya menghentikan loop `curl` dengan `Ctrl+C` dan menghitung jumlah req
 grep -c FAIL ~/week-9-rolling-update.log
 ```
 
-![fail zero](./img/pekan-9/devops-fail-zero.png)
+![fail zero](./img/pekan-9/devops-fail-zero.webp)
 
 Hasil penghitungan ini menunjukkan apakah ada request yang gagal **selama periode pengujian**. Jika hasilnya `0`, berarti tidak ada kegagalan request yang teramati pada pengujian tersebut. Konfigurasi rollback sudah dipasang, tetapi mekanismenya belum diuji secara langsung karena update ini tidak sengaja dibuat gagal.

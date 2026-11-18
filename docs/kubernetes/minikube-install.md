@@ -32,9 +32,9 @@ curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikub
 sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
 ```
 
-![curl-to-minikube-repo](./img/minikube/curl-minikube.png)
+![curl-to-minikube-repo](./img/minikube/curl-minikube.webp)
 
-![install-minikube-binary](./img/minikube/install-minikube-to-binary.png)
+![install-minikube-binary](./img/minikube/install-minikube-to-binary.webp)
 
 Let's start minikube CAUTION thsi proccess will need stable and hight bandwidth internet connection, make sure you have prepared for those.
 
@@ -42,7 +42,7 @@ Let's start minikube CAUTION thsi proccess will need stable and hight bandwidth 
 minikube start
 ```
 
-![start minikube](./img/minikube/start-minikube.png)
+![start minikube](./img/minikube/start-minikube.webp)
 
 There are so many proccesses when running this command :
 
@@ -58,7 +58,7 @@ There are so many proccesses when running this command :
 
 <div style={{ textAlign: 'center' }}>
   <img
-    src={require('./img/minikube/minikube-node-vizualization.png').default}
+    src={require('./img/minikube/minikube-node-vizualization.webp').default}
     alt="Minikube node visualization"
     style={{
       display: 'block',
@@ -80,7 +80,7 @@ For starting point, let's download the latest release binary :
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 ```
 
-![download the latest version](./img/minikube/download-kubectl.png)
+![download the latest version](./img/minikube/download-kubectl.webp)
 
 Now we need to validate the binary by downloading kubectl checksum file :
 
@@ -88,7 +88,7 @@ Now we need to validate the binary by downloading kubectl checksum file :
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
 ```
 
-![download checksum file kubectl](./img/minikube/download-checksum-file-kubectl.png)
+![download checksum file kubectl](./img/minikube/download-checksum-file-kubectl.webp)
 
 Then, validate kubectl binary against the checksum file :
 
@@ -96,7 +96,7 @@ Then, validate kubectl binary against the checksum file :
 echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 ```
 
-![kubectl:ok](./img/minikube/kubectl-ok.png)
+![kubectl:ok](./img/minikube/kubectl-ok.webp)
 
 Install kubectl :
 
@@ -104,7 +104,7 @@ Install kubectl :
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
-![install kubectl](./img/minikube/kubectl-install-root-user.png)
+![install kubectl](./img/minikube/kubectl-install-root-user.webp)
 
 :::note
 If you do not have root access on your system, you can still install kubectl on `~/.local/bin` directory :

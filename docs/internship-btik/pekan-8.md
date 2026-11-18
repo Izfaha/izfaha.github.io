@@ -34,7 +34,7 @@ Tambahkan baris berikut:
 
 Dengan baris tersebut, VM dapat menerjemahkan `registry.btik.lab` menjadi IP VM `infra` tanpa memerlukan DNS server tersendiri.
 
-![Penambahan nama registry di hosts](./img/pekan-8/getent-registry-domain.png)
+![Penambahan nama registry di hosts](./img/pekan-8/getent-registry-domain.webp)
 
 Saya memeriksa hasilnya di setiap VM:
 
@@ -44,7 +44,7 @@ getent hosts registry.btik.lab
 
 `getent hosts` menanyakan hasil resolusi nama pada sistem. Output yang diharapkan menunjukkan IP `192.168.56.13`.
 
-![Pemeriksaan resolusi nama registry](./img/pekan-8/getent-check.png)
+![Pemeriksaan resolusi nama registry](./img/pekan-8/getent-check.webp)
 
 ## Membuat CA internal dan sertifikat registry
 
@@ -78,7 +78,7 @@ openssl req -x509 -new -sha256 \
 
 Perintah pertama membuat private key CA berukuran 4096 bit. Perintah kedua membuat sertifikat CA yang ditandatangani oleh CA itu sendiri, berlaku selama 3650 hari. Dalam lab ini, CA internal digunakan untuk menandatangani sertifikat server registry.
 
-![Pembuatan CA internal](./img/pekan-8/gen-CA.png)
+![Pembuatan CA internal](./img/pekan-8/gen-CA.webp)
 
 ### Membuat private key dan CSR registry
 
@@ -93,7 +93,7 @@ openssl req -new \
 
 `registry.key` adalah private key yang akan digunakan registry untuk TLS. File `registry.csr` adalah *Certificate Signing Request*, yaitu permintaan sertifikat yang nantinya ditandatangani oleh CA internal. Nilai `CN` berisi nama registry yang digunakan dalam lab.
 
-![Pembuatan key dan CSR registry](./img/pekan-8/gen-cert.png)
+![Pembuatan key dan CSR registry](./img/pekan-8/gen-cert.webp)
 
 ### Menambahkan identitas DNS pada sertifikat
 
@@ -108,7 +108,7 @@ EOF
 
 Perintah `cat` di atas menulis isi ke file `registry.ext`. Bagian `subjectAltName` menyatakan bahwa sertifikat berlaku untuk nama `registry.btik.lab`. `CA:FALSE` menyatakan sertifikat ini milik server, bukan sertifikat CA. `serverAuth` menyatakan sertifikat digunakan untuk autentikasi server TLS.
 
-![Ekstensi sertifikat registry](./img/pekan-8/extensi-registry.png)
+![Ekstensi sertifikat registry](./img/pekan-8/extensi-registry.webp)
 
 ### Menandatangani dan memeriksa sertifikat
 
@@ -128,7 +128,7 @@ chmod 600 ca/ca.key certs/registry.key
 
 Perintah `openssl x509 -req` menghasilkan `registry.crt` dengan menandatangani CSR memakai CA internal. Sertifikat server ini berlaku selama 365 hari. Perintah `chmod 600` membatasi pembacaan kedua private key agar hanya pemilik file yang dapat mengaksesnya.
 
-![Penandatanganan sertifikat registry](./img/pekan-8/sign-registry.png)
+![Penandatanganan sertifikat registry](./img/pekan-8/sign-registry.webp)
 
 Saya memvalidasi hasilnya:
 
@@ -140,7 +140,7 @@ openssl x509 -in certs/registry.crt -noout -ext subjectAltName
 
 Perintah pertama memeriksa apakah `registry.crt` dapat diverifikasi menggunakan `ca.crt`. Hasil yang diharapkan adalah `certs/registry.crt: OK`. Perintah kedua menampilkan identitas DNS pada sertifikat; hasilnya harus memuat `DNS:registry.btik.lab`.
 
-![Validasi sertifikat](./img/pekan-8/verify.png)
+![Validasi sertifikat](./img/pekan-8/verify.webp)
 
 :::caution
 `ca.key` dan `registry.key` adalah private key. Keduanya tetap disimpan di VM `infra`. Sertifikat yang dibagikan ke node lain hanya `ca.crt`.
@@ -165,7 +165,7 @@ htpasswd -Bc ~/week-8/auth/htpasswd registryuser
 
 Opsi `-B` menyimpan password dalam bentuk hash bcrypt. Opsi `-c` membuat file htpasswd baru, sehingga **hanya digunakan saat membuat akun pertama**. Perintah ini meminta password secara interaktif.
 
-![Pembuatan akun registry](./img/pekan-8/create-registryuser.png)
+![Pembuatan akun registry](./img/pekan-8/create-registryuser.webp)
 
 Untuk menambah akun berikutnya, saya menggunakan `-B` tanpa `-c`:
 
@@ -243,7 +243,7 @@ curl --cacert ~/week-8/ca/ca.crt -I https://registry.btik.lab:5000/v2/
 
 `--cacert` meminta `curl` mempercayai CA internal yang dibuat sebelumnya. Opsi `-I` menampilkan header respons saja. Respons `401 Unauthorized` di tahap ini diharapkan: koneksi HTTPS berhasil, tetapi registry meminta autentikasi.
 
-![Request tanpa akun menghasilkan 401](./img/pekan-8/cek-curl-tanpa-user-401.png)
+![Request tanpa akun menghasilkan 401](./img/pekan-8/cek-curl-tanpa-user-401.webp)
 
 Kemudian saya mengirim request dengan akun registry:
 
@@ -253,7 +253,7 @@ curl --cacert ~/week-8/ca/ca.crt -u registryuser https://registry.btik.lab:5000/
 
 Opsi `-u registryuser` membuat `curl` meminta password akun tersebut. Jika berhasil, endpoint `/v2/` mengembalikan `{}`.
 
-![Pengujian akun registry dengan curl](./img/pekan-8/login-registryuser-using-curl.png)
+![Pengujian akun registry dengan curl](./img/pekan-8/login-registryuser-using-curl.webp)
 
 ## Mendistribusikan CA ke semua node
 
@@ -268,7 +268,7 @@ scp ~/week-8/ca/ca.crt ubuntu@192.168.56.12:/tmp/btik-ca.crt
 
 `scp` menyalin file melalui SSH. Ketiga alamat tujuan adalah VM `manager1`, `worker1`, dan `worker2`. Yang disalin adalah `ca.crt`, bukan private key CA.
 
-![Distribusi sertifikat CA](./img/pekan-8/scp-send-crt.png)
+![Distribusi sertifikat CA](./img/pekan-8/scp-send-crt.webp)
 
 Di masing-masing VM tujuan, saya memasang CA pada direktori kepercayaan Docker:
 
@@ -282,7 +282,7 @@ sudo systemctl restart docker
 
 Nama direktori `registry.btik.lab:5000` harus sama persis dengan alamat registry yang dipakai untuk `docker login`, `push`, dan `pull`. `install -m 0644` menyalin file sambil mengatur izinnya. Docker kemudian dimulai ulang agar konfigurasi kepercayaan sertifikat dimuat.
 
-![Pemasangan CA pada node](./img/pekan-8/pasang-CA-dinodes.png)
+![Pemasangan CA pada node](./img/pekan-8/pasang-CA-dinodes.webp)
 
 Saya juga memasang CA pada Docker daemon di VM `infra`:
 
@@ -306,7 +306,7 @@ docker login -u registryuser registry.btik.lab:5000
 
 Docker meminta password akun `registryuser`. Jika berhasil, Docker dapat menggunakan kredensial tersebut saat push dan pull.
 
-![Login ke private registry](./img/pekan-8/docker-login-to-local-registry.png)
+![Login ke private registry](./img/pekan-8/docker-login-to-local-registry.webp)
 
 Saya mengambil image Alpine dari Docker Hub:
 
@@ -316,7 +316,7 @@ docker pull alpine:3.20
 
 Perintah ini menyimpan image `alpine:3.20` pada Docker daemon VM `infra`. Image tersebut belum berada di private registry.
 
-![Mengambil image dari Docker Hub](./img/pekan-8/pull-image-from-dockerhub.png)
+![Mengambil image dari Docker Hub](./img/pekan-8/pull-image-from-dockerhub.webp)
 
 Selanjutnya saya memberikan nama dan tag yang menunjuk ke registry internal:
 
@@ -326,7 +326,7 @@ docker tag alpine:3.20 registry.btik.lab:5000/lab/alpine:uji-infra
 
 `docker tag` membuat referensi nama baru untuk image yang sudah tersedia secara lokal. `registry.btik.lab:5000` menunjukkan alamat registry tujuan, `lab/alpine` adalah nama repository, dan `uji-infra` adalah tag. Perintah ini **belum mengunggah image**.
 
-![Pemberian tag untuk registry internal](./img/pekan-8/tagging-image.png)
+![Pemberian tag untuk registry internal](./img/pekan-8/tagging-image.webp)
 
 Saya mengunggahnya dengan:
 
@@ -336,7 +336,7 @@ docker push registry.btik.lab:5000/lab/alpine:uji-infra
 
 `docker push` mengirim image ke registry. Repository `lab/alpine` akan muncul setelah push pertama berhasil; repository tidak perlu dibuat secara manual. Saya memastikan output berakhir dengan digest `sha256:...`.
 
-![Push image ke private registry](./img/pekan-8/push-to-private-registry.png)
+![Push image ke private registry](./img/pekan-8/push-to-private-registry.webp)
 
 Untuk memeriksa tag yang tersimpan, saya menjalankan perintah berikut di VM `infra`:
 

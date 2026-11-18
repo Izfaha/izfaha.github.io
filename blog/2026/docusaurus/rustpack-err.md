@@ -15,7 +15,7 @@ custom_fields:
 
 It suddenly apprears when I run `npm run start`.
 
-![err](./img/error-prsma.png)
+![err](./img/error-prsma.webp)
 
 ## How to fix?
 
@@ -25,7 +25,7 @@ Just clear the cache by hitting this command :
 npx docusaurus clear
 ```
 
-![docusaurus-clear](./img/docusaurus-clear.png)
+![docusaurus-clear](./img/docusaurus-clear.webp)
 
 then run :
 

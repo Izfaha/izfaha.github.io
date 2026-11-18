@@ -24,7 +24,7 @@ sudo systemctl status {postgresql,httpd}
 
 It will look like this
 
-![Systemd Services](./img/apache-postgresql.png)
+![Systemd Services](./img/apache-postgresql.webp)
 
 ## Create User & Database in postgresql
 
@@ -34,7 +34,7 @@ It will look like this
 sudo -iu postgres
 ```
 
-![Login PostgreSQL](./img/login-postgresql.png)
+![Login PostgreSQL](./img/login-postgresql.webp)
 
 After login to posgresql database, then create user
 
@@ -43,7 +43,7 @@ After login to posgresql database, then create user
 createuser --bypassrls -s -l -d laravel
 ```
 
-![Create User](./img/createuser.png)
+![Create User](./img/createuser.webp)
 
 ### Create Database
 
@@ -51,7 +51,7 @@ createuser --bypassrls -s -l -d laravel
 createdb -O laravel laravel_db
 ```
 
-![Create DB](./img/createdb.png)
+![Create DB](./img/createdb.webp)
 
 ## Set .env in Laravel
 

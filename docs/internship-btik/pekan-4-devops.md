@@ -127,7 +127,7 @@ time -p docker build --no-cache --progress=plain -f Dockerfile.alpine -t dfile:0
 
 Ini adalah waktu build dari base image alpine dapat di 2.3 detik.
 
-![build time dokerfile alpine base image](./img/pekan-4/dfile-alpine-time.png)
+![build time dokerfile alpine base image](./img/pekan-4/dfile-alpine-time.webp)
 
 - Dockerfile.slim :
 
@@ -137,7 +137,7 @@ time -p docker build --no-cache --progress=plain -f Dockerfile.slim -t dfile:0.1
 
 Ini adalah waktu build dari base image slim dapat di 3.3 detik.
 
-![build time dokerfile slim base image](./img/pekan-4/dfile-slim-time.png)
+![build time dokerfile slim base image](./img/pekan-4/dfile-slim-time.webp)
 
 - Dockerfile.distroless :
 
@@ -147,7 +147,7 @@ time -p docker build --no-cache --progress=plain -f Dockerfile.distroless -t dfi
 
 Ini adalah waktu build dari base image distroless dapat di 5.5 detik.
 
-![build time dokerfile slim base image](./img/pekan-4/dfile-distroless-time.png)
+![build time dokerfile slim base image](./img/pekan-4/dfile-distroless-time.webp)
 
 :::note
 Di sini saya memiliki rasa penasaran terhadap output dari `real`, `user` dan `sys`. Setelah saya telusuri ternyata :
@@ -164,6 +164,6 @@ Dengan menjalankan command ini semua ukuran image app python nya akan tampil :
 docker image ls --format 'table {{.Repository}}\t{{.Tag}}\t{{.Size}}'
 ```
 
-![perbandingan ukuran tiap image hasil build](./img/pekan-4/size-images.png)
+![perbandingan ukuran tiap image hasil build](./img/pekan-4/size-images.webp)
 
 Dari sini timbul pertanyaan kira kira apa yg mempengaruhi besar kecil nya image docker? setelah saya ulik ternyata yg mempengaruhi bersar kecilnya image itu dari instruksi, base image, sama file yg di salin ke dalam container nantinya. Kurang lebih sekian dokumentasi dari saya mohon maaf kalo ada kesalahan :p.

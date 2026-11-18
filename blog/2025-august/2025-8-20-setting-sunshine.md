@@ -20,7 +20,7 @@ sunshine            # <= this is a command
 `{/* truncate */}`
 
 You will see line bellow
-![Sunshine Run](./img/sunshine.png)
+![Sunshine Run](./img/sunshine.webp)
 Afterward, coppy the link and paste to your browser.
 
 :::warning[Attention]

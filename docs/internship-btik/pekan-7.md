@@ -123,7 +123,7 @@ volumes:
   session_data:
 ```
 
-![compose file](./img/pekan-7/compose-redis.png)
+![compose file](./img/pekan-7/compose-redis.webp)
 
 ### Pembuatan Index dan Dockerfile
 
@@ -180,7 +180,7 @@ function aman(string $nilai): string
 </body>
 </html>
 ```
-![php/index.php file](./img/pekan-7/indexphp.png)
+![php/index.php file](./img/pekan-7/indexphp.webp)
 
 ```yml title="php/Dockerfile"
 FROM php:8.3-fpm
@@ -189,7 +189,7 @@ RUN pecl install redis \
     && docker-php-ext-enable redis
 ```
 
-![dockerfile](./img/pekan-7/dockerfile.png)
+![dockerfile](./img/pekan-7/dockerfile.webp)
 
 Selanjutnya saya akan menjalankan compose yg sudah dibuat :
 
@@ -197,11 +197,11 @@ Selanjutnya saya akan menjalankan compose yg sudah dibuat :
 docker compose up -d --build
 ```
 
-![docker compose](./img/pekan-7/compose-w7.png)
+![docker compose](./img/pekan-7/compose-w7.webp)
 
 Index di `http://192.168.56.12:18080` sudah jalan :
 
-![index web redis](./img/pekan-7/web-index-redis.png)
+![index web redis](./img/pekan-7/web-index-redis.webp)
 
 ## Belajar struktur data dan TTL
 
@@ -259,7 +259,7 @@ docker exec redis-cache-w7 redis-cli GET latihan:sementara
 docker exec redis-cache-w7 redis-cli TTL latihan:sementara
 ```
 
-![redis command](./img/pekan-7/ttl-redis.png)
+![redis command](./img/pekan-7/ttl-redis.webp)
 
 :::note
 GET mengambil data sementara `"hapus otomatis"` dalam kasus ini sudah kosong berarti data sudah tidak ada. Command TTL untuk menanyakan sisa waktu hidup data didalam key.
@@ -275,7 +275,7 @@ docker exec redis-cache-w7 redis-cli CONFIG GET maxmemory
 docker exec redis-cache-w7 redis-cli CONFIG GET maxmemory-policy
 ```
 
-![rdb aof](./img/pekan-7/redis-cache-aof-rdb.png)
+![rdb aof](./img/pekan-7/redis-cache-aof-rdb.webp)
 
 ```bash
 docker exec redis-session-w7 redis-cli CONFIG GET save
@@ -284,7 +284,7 @@ docker exec redis-session-w7 redis-cli CONFIG GET maxmemory
 docker exec redis-session-w7 redis-cli CONFIG GET maxmemory-policy
 ```
 
-![rdb aof](./img/pekan-7/redis-session-aof-rdb.png)
+![rdb aof](./img/pekan-7/redis-session-aof-rdb.webp)
 
 ## Memantau dengan `redis-cli INFO`
 
@@ -300,14 +300,14 @@ Ini adalah isi dari Redis INFO :
 
 **Container Redis Cache**
 
-![redis cache INFO memory](./img/pekan-7/info-memori-cache-container.png)
+![redis cache INFO memory](./img/pekan-7/info-memori-cache-container.webp)
 
-![redis cache INFO stats](./img/pekan-7/redis-stats-cache-container.png)
+![redis cache INFO stats](./img/pekan-7/redis-stats-cache-container.webp)
 
-![redis cache INFO persistence](./img/pekan-7/redis-persistence-cache-container.png)
+![redis cache INFO persistence](./img/pekan-7/redis-persistence-cache-container.webp)
 
 **Container Redis Session**
 
-![redis session INFO memory](./img/pekan-7/redis-memori-session-container.png)
+![redis session INFO memory](./img/pekan-7/redis-memori-session-container.webp)
 
-![redis session INFO persistence](./img/pekan-7/redis-persistence-session-container.png)
+![redis session INFO persistence](./img/pekan-7/redis-persistence-session-container.webp)

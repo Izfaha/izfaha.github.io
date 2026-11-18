@@ -117,7 +117,7 @@ function aman(string $nilai): string
 </html>
 ```
 
-![index.php file](./img/pekan-6/indexphp.png)
+![index.php file](./img/pekan-6/indexphp.webp)
 
 ### Dockerfile
 
@@ -132,7 +132,7 @@ COPY index.php /var/www/html/index.php
 
 ```
 
-![Dockerfile file](./img/pekan-6/dockerfile-indexphp.png)
+![Dockerfile file](./img/pekan-6/dockerfile-indexphp.webp)
 
 ### docker compose
 
@@ -186,7 +186,7 @@ volumes:
   mariadb_data_devops:
 ```
 
-![compose.yml file](./img/pekan-6/composeyaml-indexphp.png)
+![compose.yml file](./img/pekan-6/composeyaml-indexphp.webp)
 
 Pada compose, untuk database mariadb tidak akan expose port dan untuk app akan expose port karena ini akan ditampilkan ke browser akan tetapi untuk UI adminer akan di batasi hanya bisa di lihat secara local saya dengan `127.0.0.1`. Sekarang saya akan mencoba menjalankan compose nya dulu.
 
@@ -194,15 +194,15 @@ Pada compose, untuk database mariadb tidak akan expose port dan untuk app akan e
 docker compose up
 ```
 
-![docker ps](./img/pekan-6/ps-week6devops.png)
+![docker ps](./img/pekan-6/ps-week6devops.webp)
 
 Membuka UI index.php di browser 192.168.56.12.
 
-![ui](./img/pekan-6/web-week6devops.png)
+![ui](./img/pekan-6/web-week6devops.webp)
 
 UI adminer via `ssh -L 18083:localhost:18083 ubuntu@192.168.56.12`.
 
-![adminer](./img/pekan-6/adminer-ui-week6devops.png)
+![adminer](./img/pekan-6/adminer-ui-week6devops.webp)
 
 ### Generate ssh key
 
@@ -210,7 +210,7 @@ Baik semua persiapan di vm `worker2` sudah beres, selanjutnya saya akan menyiapk
 
 Saya sudah membuat ssh key untuk backup ke vm `infra` dengan no pasphrase, saya kurang tau apakah ini best practice untuk backup atau tidak. 
 
-![sshkeygen](./img/pekan-6/generate-sshkey-forbackuptovminfra.png)
+![sshkeygen](./img/pekan-6/generate-sshkey-forbackuptovminfra.webp)
 
 Kirim ssh key ke vm `infra` :
 
@@ -218,7 +218,7 @@ Kirim ssh key ke vm `infra` :
 ssh-copy-id -i ~/.ssh/key_backup.pub ubuntu@192.168.56.13
 ```
 
-![copy id](./img/pekan-6/ssh-copyid-to-vminfra.png)
+![copy id](./img/pekan-6/ssh-copyid-to-vminfra.webp)
 
 sekarang saya akan uji koneksi dengan command :
 
@@ -226,7 +226,7 @@ sekarang saya akan uji koneksi dengan command :
 ssh -i ~/.ssh/week6_backup ubuntu@192.168.56.13 'test -w /srv/backups/week6-devops && echo "Folder backup siap"'
 ```
 
-![cek remote backup folder](./img/pekan-6/cek-folder-backup-vm-infra.png)
+![cek remote backup folder](./img/pekan-6/cek-folder-backup-vm-infra.webp)
 
 Alhamdulillah berhasil.
 
@@ -290,7 +290,7 @@ Proses backup normal nya membutuhkan waktu banyak jika data sangat besar tapi di
 ./script/backup.sh
 ```
 
-![backup script](./img/pekan-6/test-backup-script.png)
+![backup script](./img/pekan-6/test-backup-script.webp)
 
 Akhirnya backup script kita berhasil.
 
@@ -304,19 +304,19 @@ Atur crontab `crontab -e`, jika baru pertama kali menjalankan command ini maka a
 
 Setelah itu cek dulu dengan command `crontab -l`. Command ini akan memberitahukan kita list crontab yg ada.
 
-![cek crontab](./img/pekan-6/crontab.png)
+![cek crontab](./img/pekan-6/crontab.webp)
 
 ### Buat Compose untuk Restore
 
 Sekarang saya akan membuat compose baru lalu saya akan merestore database backup nya. Saya akan menjalankan compose backup dan mengambil backup database dari vm `infra`.
 
-![compose backup](./img/pekan-6/compose-for-backup.png)
+![compose backup](./img/pekan-6/compose-for-backup.webp)
 
 ```
 scp -i ~/.ssh/key_backup ubuntu@192.168.56.13:/home/ubuntu/backup/week6-app-20261107-154609.sql.gz ./backups
 ```
 
-![backup via scp](./img/pekan-6/scp-backups.png)
+![backup via scp](./img/pekan-6/scp-backups.webp)
 
 Semua proses backup sudah berhasil sekarang saya akan me-restore ke container yg baru.
 
@@ -334,7 +334,7 @@ docker compose -f compose.restore.yaml exec mariadb sh -c \
   'mariadb -u "$MARIADB_USER" -p"$MARIADB_PASSWORD" "$MARIADB_DATABASE" -e "SELECT COUNT(*) AS jumlah FROM catatan; SELECT * FROM catatan;"'
 ```
 
-![bandingkan db](./img/pekan-6/db-bandingan.png)
+![bandingkan db](./img/pekan-6/db-bandingan.webp)
 
 Nomor 1 : Database asli.
 Nomor 2 : Database yg sudah berhasil di restore.

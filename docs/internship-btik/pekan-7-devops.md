@@ -26,7 +26,7 @@ Pada pengujian tanpa cache, nilai `Time per request (mean)` adalah **71,297 ms**
 ab -n 200 -c 10 `http://127.0.0.1:18080/bench.php?mode=uncached` | mkdir -p ~/week-7/bench-result | tee ~/week-7/bench-result/tanpa-cahce.txt
 ```
 
-![response uncache](./img/pekan-7/response-uncache.png)
+![response uncache](./img/pekan-7/response-uncache.webp)
 
 ### Pengujian Dengan Cache
 
@@ -37,7 +37,7 @@ dengan cahce = 18.020 [ms] (mean)
 ab -n 200 -c 10 `http://127.0.0.1:18080/bench.php?mode=cached` | tee ~/week-7/bench-result/pakai-cahce.txt
 ```
 
-![response uncache](./img/pekan-7/response-cache.png)
+![response uncache](./img/pekan-7/response-cache.webp)
 
 ### Perbandingan
 
@@ -147,7 +147,7 @@ Redis Master :
 docker exec ha-redis-master-1 redis-cli INFO replication
 ```
 
-![redis master](./img/pekan-7/redis-master.png)
+![redis master](./img/pekan-7/redis-master.webp)
 
 Redis Replica 1 :
 
@@ -155,7 +155,7 @@ Redis Replica 1 :
 docker exec ha-redis-replica-1-1 redis-cli INFO replication
 ```
 
-![redis master](./img/pekan-7/redis-replika-1.png)
+![redis master](./img/pekan-7/redis-replika-1.webp)
 
 Redis Replica 2 :
 
@@ -163,7 +163,7 @@ Redis Replica 2 :
 docker exec ha-redis-replica-2-1 redis-cli INFO replication
 ```
 
-![redis master](./img/pekan-7/redis-replika-2.png)
+![redis master](./img/pekan-7/redis-replika-2.webp)
 
 Cek Sentinel :
 
@@ -172,7 +172,7 @@ docker exec ha-sentinel-1-1 redis-cli -p 26379 SENTINEL CKQUORUM mymaster
 docker exec ha-sentinel-1-1 redis-cli -p 26379 SENTINEL get-master-addr-by-name mymaster
 ```
 
-![sentinel master check](./img/pekan-7/sentinel-master-check.png)
+![sentinel master check](./img/pekan-7/sentinel-master-check.webp)
 
 ### Uji Failover
 
@@ -182,7 +182,7 @@ Sekarang saatnya uji failover. Disini saya akan menulis data untuk dijadikan per
 docker exec ha-redis-master-1 redis-cli SET latihan:failover "data-sebelum-failover"
 ```
 
-![tulis data temp](./img/pekan-7/tulis-data-sementara.png)
+![tulis data temp](./img/pekan-7/tulis-data-sementara.webp)
 
 Sekarang saya cek apakah sentinel mendeteksi container master redis dan 2 replica nya.
 
@@ -190,7 +190,7 @@ Sekarang saya cek apakah sentinel mendeteksi container master redis dan 2 replic
 docker logs -f ha-sentinel-1-1
 ```
 
-![cek sentinel master and slave detection](./img/pekan-7/sentinel-cek-master-slaves.png)
+![cek sentinel master and slave detection](./img/pekan-7/sentinel-cek-master-slaves.webp)
 
 Sekrang saya coba hentikan master container, apakah sentinel akan menentukan master baru. saya perlu menunggu proses penentuan master baru. Nanti akan ada replika yg role nya berubah menjadi `master`. 
 
@@ -198,12 +198,12 @@ Sekrang saya coba hentikan master container, apakah sentinel akan menentukan mas
 docker stop f36782788e56
 ```
 
-![stop master redis](./img/pekan-7/stop-master-redis.png)
+![stop master redis](./img/pekan-7/stop-master-redis.webp)
 
 Lalu sentinel akan menjacari kandidat master dan ketemu, master baru diberikan kepana container slave 2.
 
-![switch master on slave 2](./img/pekan-7/switch-master-on-slave.png)
+![switch master on slave 2](./img/pekan-7/switch-master-on-slave.webp)
 
 Untuk container slave 2 menjadi master karena master sebelumnya down dan untuk slave 1 menjadi slave dari master (slave 2).
 
-![new master on slave 2](./img/pekan-7/new-master-on-slave-2.png)
+![new master on slave 2](./img/pekan-7/new-master-on-slave-2.webp)

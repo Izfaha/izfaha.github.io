@@ -18,7 +18,7 @@ In this night, I try to learn ZFS using method live/rescue means resizing `lv_ro
 | lv_root | /dev/vg0/lv_root | this is root partition |
 | lv_swap | /dev/vg0/lv_swap | this is swap partition |
 
-![lsblk list partition](./img/zfs/lsblk-list-partition.png)
+![lsblk list partition](./img/zfs/lsblk-list-partition.webp)
 
 :::warning[DISCLAIMER]
 I install alpine using LVS filesystem and formated as ext4, in this case `sda2` as `/` and `sda1` as `/boot`.
@@ -30,7 +30,7 @@ What I implement is from [zfs documentation](https://openzfs.github.io/openzfs-d
 
 In advance, you need to make sure that you have uncomment community repository on `/etc/apk/repository`.
 
-![uncomment repository community](./img/zfs/apk-repository.png)
+![uncomment repository community](./img/zfs/apk-repository.webp)
 
 Then install ZFS :
 
@@ -38,7 +38,7 @@ Then install ZFS :
 apk add zfs zfs-lts
 ```
 
-![image zaf installation](./img/zfs/zfs-install-apk.png)
+![image zaf installation](./img/zfs/zfs-install-apk.webp)
 
 Load zfs kernel :
 

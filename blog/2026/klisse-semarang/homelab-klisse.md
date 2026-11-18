@@ -31,7 +31,7 @@ On our first step is setting up firewal, I will leverage `ufw` or Uncomplicated 
 
 Disable IPv6 in `/etc/default/ufw` then change `IPV6=yes` becomes `IPV6=no`.
 
-![diable ipv6 in /etc/default/ufw](./img/ufw-disable-ipv6.png)
+![diable ipv6 in /etc/default/ufw](./img/ufw-disable-ipv6.webp)
 
 ```bash
 sudo ufw enable
@@ -92,4 +92,4 @@ To make sure, We can easily test our ports server using `nmap` tools, like this 
 nmap -p 80,443,22 192.168.77.234
 ```
 
-![nmap port checking](./img/nmap-port-checking.png)
+![nmap port checking](./img/nmap-port-checking.webp)

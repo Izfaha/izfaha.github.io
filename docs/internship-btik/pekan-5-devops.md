@@ -117,11 +117,11 @@ selanjut nya saya akan mencoba untuk menjalankan docker compose :
 ```bash
 docker compose up -d
 ```
-![docker compose wp](./img/pekan-5/docker-compose-ps-wp.png)
+![docker compose wp](./img/pekan-5/docker-compose-ps-wp.webp)
 
 dan berhasil untuk mendeploy wordpress dan sudah melewati nginx.
 
-![wordpress app](./img/pekan-5/wp-dashboard.png)
+![wordpress app](./img/pekan-5/wp-dashboard.webp)
 
 ## Uji beban Nginx dan Apache dengan ab atau wrk, bandingkan hasilnya. (opsional)
 
@@ -139,7 +139,7 @@ lalu langsung tes :
 ab -n 100 -c 10 http://127.0.0.1:18080/index.html
 ```
 
-![nginx brcm](./img/pekan-5/hasil-brcm-nginx.png)
+![nginx brcm](./img/pekan-5/hasil-brcm-nginx.webp)
 
 **Test brencmark Apache2**
 
@@ -147,7 +147,7 @@ ab -n 100 -c 10 http://127.0.0.1:18080/index.html
 ab -n 100 -c 10 http://127.0.0.1:18081/index.html
 ```
 
-![apache brcm](./img/pekan-5/hasil-brcm-apache.png)
+![apache brcm](./img/pekan-5/hasil-brcm-apache.webp)
 
 Ini adalah table metrik dari hasil brenchmarking dari `ab`. Perlu di ingat `ab` atau ApacheBench itu belum mengukur performa keseluruhan web app, cuman mengetest satu endpoin saja. Lebih tepatnya `ab` dalam praktik ini hanya mengukur performa nginx dan apache dalam melayani file statis HTML aja. 
 

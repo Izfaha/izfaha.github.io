@@ -98,7 +98,7 @@ Ini adalah tagging menggunakan digest sha commit docker.
 bash build-tag-push.sh
 ```
 
-![tagging menggunkana digest](./img/pekan-8/tagging-digest-sha-docker.png)
+![tagging menggunkana digest](./img/pekan-8/tagging-digest-sha-docker.webp)
 
 Dan ini menggunakan version `0.1.1`.
 
@@ -106,11 +106,11 @@ Dan ini menggunakan version `0.1.1`.
 bash build-tag-push.sh 0.1.1
 ```
 
-![tagging menggunakan version number](./img/pekan-8/tagging-versioning-docker.png)
+![tagging menggunakan version number](./img/pekan-8/tagging-versioning-docker.webp)
 
-![image list](./img/pekan-8/image-list.png)
+![image list](./img/pekan-8/image-list.webp)
 
 Cek di `registry.btik.lab:5000` vm `infra`.
 
-![registry tag list](./img/pekan-8/registry-tag-list.png)
+![registry tag list](./img/pekan-8/registry-tag-list.webp)
 

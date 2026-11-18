@@ -13,7 +13,7 @@ Saat melakukan instalasi Ubuntu Server 25.10 menggunakan QEMU/KVM di host Arch L
 
 `{/* truncate */}`
 
-![ubuntu](./img/ubuntu-qemu-virtbr0-unabel-connect-to-internet.png)
+![ubuntu](./img/ubuntu-qemu-virtbr0-unabel-connect-to-internet.webp)
 
 setelah trouble shouting ternyata kebijakan firewall secara default memblokir semua lalu lintas yang mencoba "menyeberang"/FORWARD antar interface. Karena VM berada di virbr0 dan ingin keluar melalui WiFi/Ethernet, paket datanya langsung dibuang (DROP) oleh rule tersebut.
 
