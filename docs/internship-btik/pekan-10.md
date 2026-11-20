@@ -199,6 +199,10 @@ Jika halaman menampilkan teks **“Pekan 10: Docker Swarm Stack”**, berarti Ng
 
 ![Halaman web hasil deploy](./img/pekan-10/cek-index-in-browser.png)
 
+:::note
+Untuk melihat stack bisa menggunakan command `docker stack ls` atau `docker stack ps nama_stack`. Ketika ingin menghapus stack cukup ketik `docker stack rm nama_stack`.
+:::
+
 ## Kesimpulan
 
 Melalui satu file `stack.yml`, saya dapat mendeklarasikan dan menjalankan beberapa service di cluster Docker Swarm. Overlay network menyediakan jaringan antarnode, sedangkan label node dan placement constraint menentukan lokasi task. Docker config digunakan untuk halaman web dan Docker secret digunakan untuk password PostgreSQL.
